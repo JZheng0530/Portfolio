@@ -22,6 +22,12 @@ class SkillCard {
 
 // Skills data
 const skills = [
+    // Programming Languages
+    {
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+        title: 'C++',
+        description: 'Programming Language'
+    },
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
         title: 'JavaScript',
@@ -32,6 +38,12 @@ const skills = [
         title: 'TypeScript',
         description: 'JavaScript but better'
     },
+    {
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+        title: 'Python',
+        description: 'Programming Language'
+    },
+    // Web Technologies
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
         title: 'HTML',
@@ -52,6 +64,12 @@ const skills = [
         title: 'NextJS',
         description: 'React Framework'
     },
+    // Development Tools
+    {
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+        title: 'Git',
+        description: 'Version Control'
+    },
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
         title: 'Tailwind',
@@ -61,16 +79,6 @@ const skills = [
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
         title: 'Figma',
         description: 'Design Tool'
-    },
-    {
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-        title: 'Git',
-        description: 'Version Control'
-    },
-    {
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-        title: 'Python',
-        description: 'Programming Language'
     },
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
