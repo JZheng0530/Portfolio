@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 body {
     background-color: rgba(15,15,16,255);
     color: white;
@@ -218,23 +220,26 @@ nav {
 /* Skills Section */
 .skills-section {
     width: 100%;
-    padding: 40px 0;
+    padding: 20px 0;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    height: auto;
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 250px);
-    gap: 30px 60px;
-    position: relative;
-    left: -15px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: min(90vw, 1200px);
+    margin: 0 auto;
 }
 
 .skill-card {
-    background: rgba(32, 33, 36, 0.8);
+    position: relative;
+    background: rgba(32, 33, 36, 1);
     border-radius: 12px;
     padding: 15px;
     display: flex;
@@ -242,15 +247,15 @@ nav {
     align-items: center;
     text-align: center;
     gap: 12px;
-    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px;
+    opacity: 1;
+    visibility: visible;
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .skill-icon {
@@ -286,21 +291,13 @@ nav {
 
 @media (max-width: 1024px) {
     .skills-grid {
-        grid-template-columns: repeat(2, 250px);
-        gap: 25px 45px;
-        left: 0;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
 
 @media (max-width: 640px) {
-    .skills-section {
-        padding: 20px 0;
-    }
-    
     .skills-grid {
-        grid-template-columns: 250px;
-        gap: 20px;
-        left: 0;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
 
@@ -328,41 +325,56 @@ nav {
     
 .calendly-container { 
     text-align: center; 
-    background-color: rgba(32, 33, 36, 1); 
-    padding: 30px; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    max-width: 400px;
+    background: linear-gradient(90deg, 
+        rgba(32, 33, 36, 0.95) 0%,
+        rgba(45, 46, 52, 0.95) 45%,
+        rgba(55, 56, 62, 0.95) 50%,
+        rgba(45, 46, 52, 0.95) 55%,
+        rgba(32, 33, 36, 0.95) 100%);
+    background-size: 200% 100%;
+    animation: lightSweep 8s ease-in-out infinite;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
     width: 100%; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
 } 
     
 .calendly-container h3 { 
-    font-size: 1.5rem; 
-    margin-bottom: 15px; 
+    font-family: "Inter", sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 12px; 
     color: #fff; 
+    font-weight: 600;
 } 
     
 .calendly-container p { 
-    color: #d1d1d1; 
-    margin-bottom: 20px; 
-    font-size: 0.95rem; 
+    font-family: "Inter", sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 18px; 
+    font-size: 0.9rem; 
     line-height: 1.5; 
 } 
     
 .calendly-link { 
+    font-family: "Inter", sans-serif;
     display: inline-block; 
-    background-color: #3b82f6; 
+    background-color: rgba(255, 255, 255, 0.15);
     color: white; 
-    padding: 12px 24px; 
-    border-radius: 5px; 
+    padding: 10px 20px;
+    border-radius: 8px; 
     text-decoration: none; 
-    font-weight: bold; 
-    transition: background-color 0.3s ease, transform 0.2s ease; 
+    font-weight: 500; 
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 } 
     
 .calendly-link:hover { 
-    background-color: #2563eb; 
-    transform: translateY(-2px); 
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Light Mode Styles */
@@ -578,5 +590,36 @@ body.light-mode .skill-content p {
 
     .nav-links a {
         font-size: 16px;
+    }
+}
+
+@keyframes gradientGlint {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.calendly-container:hover {
+    background: linear-gradient(90deg, 
+        rgba(35, 36, 40, 0.95) 0%,
+        rgba(48, 49, 55, 0.95) 45%,
+        rgba(58, 59, 65, 0.95) 50%,
+        rgba(48, 49, 55, 0.95) 55%,
+        rgba(35, 36, 40, 0.95) 100%);
+    background-size: 200% 100%;
+}
+
+@keyframes lightSweep {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
     }
 }

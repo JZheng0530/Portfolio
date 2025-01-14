@@ -89,13 +89,22 @@ const skills = [
 
 // Render skills (simplified without animations)
 document.addEventListener('DOMContentLoaded', () => {
-    // Render skills
-    const skillsGrid = document.querySelector('.skills-grid');
-    if (skillsGrid) {
-        skills.forEach(skill => {
-            const skillCard = new SkillCard(skill.icon, skill.title, skill.description);
-            skillsGrid.appendChild(skillCard.render());
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+        // Clear existing content
+        skillsSection.innerHTML = '';
+        
+        // Create skills grid
+        const skillsGrid = document.createElement('div');
+        skillsGrid.className = 'skills-grid';
+        
+        // Create skill cards
+        skills.forEach((skill) => {
+            const skillCard = new SkillCard(skill.icon, skill.title, skill.description).render();
+            skillsGrid.appendChild(skillCard);
         });
+        
+        skillsSection.appendChild(skillsGrid);
     }
 
     // Initialize animations
