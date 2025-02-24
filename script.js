@@ -146,6 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
+            // Update slider position
+            slider.className = 'slider';
+            if (sectionName === 'leadership') {
+                slider.classList.add('leadership');
+            } else if (sectionName === 'projects') {
+                slider.classList.add('projects');
+            }
+
             // Fade out current section
             if (currentSection) {
                 currentSection.style.opacity = '0';
@@ -164,9 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetSection.style.opacity = '1';
                 targetSection.style.transform = 'translateY(0)';
             }, 300);
-
-            // Move slider with easing
-            slider.classList.toggle('personal', sectionName === 'personal');
         });
     });
 
