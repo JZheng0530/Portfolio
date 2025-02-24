@@ -215,8 +215,12 @@
             <div class="contact-container">
                 <div class="calendly-container">
                     <h3>Schedule a Meeting</h3>
-                    <p>I'd love to chat! Click the button below to book a 30-minute call with me.</p>
-                    <a href="https://calendly.com/uberfoots/30min" target="_blank" class="calendly-link">Book a 30-minute call</a>
+                    <p>I'd love to chat! Click the button below to book a 20-minute call with me.</p>
+                    <!-- Calendly link widget begin -->
+                    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/uberfoots?hide_landing_page_details=1&hide_gdpr_banner=1'});return false;" class="calendly-link">Book a 20 minute call</a>
+                    <!-- Calendly link widget end -->
                 </div>
             </div>
         </div>
