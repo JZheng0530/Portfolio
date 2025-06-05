@@ -201,3 +201,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 });
+
+// Contact button functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const contactButton = document.getElementById('contact-button');
+    const contactPopup = document.getElementById('contact-popup');
+    const emailOption = document.getElementById('email-option');
+    const scheduleOption = document.getElementById('schedule-option');
+    const toastNotification = document.getElementById('toast-notification');
+    
+    // Toggle popup when contact button is clicked
+    contactButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        contactPopup.classList.toggle('show');
+    });
+    
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+        if (contactPopup.classList.contains('show') && 
+            !contactPopup.contains(e.target) && 
+            e.target !== contactButton) {
+            contactPopup.classList.remove('show');
+        }
+    });
+    
+    // Copy email to clipboard when email option is clicked
+    emailOption.addEventListener('click', function() {
+        const email = "Contact@jzheng.dev";
+        navigator.clipboard.writeText(email).then(function() {
+            // Show toast notification
+            toastNotification.classList.add('show');
+            
+            // Hide toast after 3 seconds
+            setTimeout(function() {
+                toastNotification.classList.remove('show');
+            }, 3000);
+            
+            // Close popup
+            contactPopup.classList.remove('show');
+        }).catch(function(err) {
+            console.error('Could not copy email: ', err);
+        });
+    });
+    
+    // Initialize Calendly when schedule option is clicked
+    scheduleOption.addEventListener('click', function() {
+        // Close popup
+        contactPopup.classList.remove('show');
+        
+        // Initialize Calendly widget
+        Calendly.initPopupWidget({
+            url: 'https://calendly.com/uberfoots/20?hide_gdpr_banner=1'
+        });
+    });
+});

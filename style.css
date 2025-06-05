@@ -21,9 +21,15 @@ body {
 }
 
 @keyframes gradientShift {
-    0% { background-position: 0% 50% }
-    50% { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .inter-body {
@@ -31,6 +37,12 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+}
+
+/* Set Raleway font for all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 .centered-container {
@@ -331,8 +343,87 @@ nav {
     width: 100%; 
     max-width: min(90vw, 725px); 
     margin: 0 auto; 
+    padding: 20px 0;
 } 
-    
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #8b5cf6, #3b82f6);
+    background-size: 300% 100%;
+    animation: gradientShift 8s ease infinite;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.contact-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+.contact-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+    background-position: right center;
+}
+
+.contact-button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulse 1.5s infinite;
+}
+
+.contact-button i {
+    font-size: 1.2rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+}
+
+/* Light mode styles for contact button */
+body.light-mode .contact-button {
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    color: white;
+}
+
+body.light-mode .contact-button:hover {
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
 .calendly-container { 
     text-align: center; 
     background: linear-gradient(90deg, 
@@ -634,4 +725,141 @@ body.light-mode .skill-content p {
     100% {
         background-position: -200% 0;
     }
+}
+
+/* Remove unused calendly and email container styles */
+.calendly-container,
+.email-container {
+    display: none; /* Hide these elements as they're no longer used */
+}
+
+/* Contact popup styles */
+.contact-popup {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-bottom: 15px;
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-50%) translateY(10px);
+}
+
+.contact-popup::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #16213e transparent transparent transparent;
+}
+
+.contact-popup.show {
+    display: flex;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.popup-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.popup-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.popup-option i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+/* Toast notification */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Update contact button to be a button instead of a link */
+.contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    background-size: 300% 100%;
+    animation: gradientShift 8s ease infinite;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(15, 52, 96, 0.4);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.contact-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+.contact-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(15, 52, 96, 0.5);
+    background-position: right center;
+}
+
+.contact-button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulse 1.5s infinite;
 }

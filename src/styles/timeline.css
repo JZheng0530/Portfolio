@@ -1,0 +1,211 @@
+/* Timeline Styles */
+
+/* Timeline Container */
+.timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: min(90vw, 725px);
+  margin: 0 auto;
+  padding: 40px 0;
+  font-family: 'Raleway', sans-serif; /* Changed font to Raleway */
+}
+
+/* Vertical Line */
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px; /* Reduced from 4px */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3)); /* Changed from blue to subtle white */
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Timeline Items */
+.timeline-item {
+  position: relative;
+  width: 45%;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.timeline-item.right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Timeline Dots - Hidden */
+.timeline-dot {
+  display: none; /* Hide the blue dots */
+}
+
+/* Timeline Content */
+.timeline-content {
+  padding: 0;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+/* Remove arrows pointing to timeline */
+.timeline-item.left .timeline-content:after,
+.timeline-item.right .timeline-content:after {
+  display: none;
+}
+
+/* Timeline Content Styling */
+.timeline-header {
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.timeline-header h3 {
+  font-size: 1.3rem;
+  margin: 0 0 10px 0;
+  color: #fff;
+  font-weight: 500; /* Lighter weight for Raleway */
+  letter-spacing: 0.5px; /* Added letter spacing */
+}
+
+.timeline-header h3 a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.timeline-header h3 a:hover {
+  color: #f39c12;
+}
+
+.timeline-header p {
+  color: #b3b3b3;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300; /* Lighter weight for dates */
+}
+
+.timeline-body {
+  color: #d1d1d1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease;
+}
+
+/* Hover effect to expand description */
+.timeline-content:hover .timeline-body {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.timeline-content:hover .timeline-header {
+  border-bottom-color: rgba(255, 255, 255, 0.2); /* Changed from blue to subtle white */
+}
+
+/* Preserve existing card tags styling */
+.timeline-content .card-tags {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.timeline-content:hover .card-tags {
+  opacity: 1;
+  max-height: 100px;
+}
+
+.timeline-content .card-tags span {
+  background-color: rgba(255, 255, 255, 0.1); /* Changed from blue to subtle white background */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 300; /* Lighter weight for tags */
+}
+
+/* Year Markers - Hidden */
+.timeline-year-marker {
+  display: none; /* Hide the year markers */
+}
+
+/* Light Mode Styles */
+body.light-mode .timeline-line {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)); /* Changed gradient for light mode */
+}
+
+body.light-mode .timeline-header h3 {
+  color: #333;
+}
+
+body.light-mode .timeline-header h3 a {
+  color: #333;
+}
+
+body.light-mode .timeline-header p {
+  color: #666;
+}
+
+body.light-mode .timeline-body {
+  color: #444;
+}
+
+body.light-mode .timeline-content:hover .timeline-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1); /* Changed for light mode */
+}
+
+body.light-mode .timeline-content .card-tags span {
+  background-color: rgba(0, 0, 0, 0.05); /* Changed for light mode */
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 30px;
+  }
+  
+  .timeline-item {
+    width: calc(100% - 60px);
+    margin-left: 60px !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .timeline-item {
+    width: calc(100% - 50px);
+    margin-left: 50px !important;
+  }
+  
+  .timeline-line {
+    left: 20px;
+  }
+  
+  .timeline-content {
+    padding: 0;
+  }
+}
