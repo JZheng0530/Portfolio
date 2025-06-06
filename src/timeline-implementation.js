@@ -185,14 +185,28 @@ const professionalExperiences = [
 
 const leadershipExperiences = [
     {
-        title: "Discover Spark",
+        title: "Spark Program",
         organization: "Discover",
         date: "May '25 — May '25",
         description: "Explored career paths and honed case study skills as one of 60 students selected from 44+ universities.",
         tags: []
     },
     {
-        title: "L'Oréal Fellowship",
+        title: "Accelerate Program",
+        organization: "Nomura",
+        date: "Mar '25 — Apr '25",
+        description: "Learned more about Information Technology, Entrepreneurship, & Financial Management.",
+        tags: []
+    },
+    {
+        title: "Early Insights Program",
+        organization: "HSBC",
+        date: "Mar '25 — Apr '25",
+        description: "Learned more about Information Technology, Entrepreneurship, & Financial Management.",
+        tags: []
+    },
+    {
+        title: "Fellow",
         organization: "L'Oréal",
         date: "Dec '24 — Present",
         description: "1 out of 50 fellows invited for leadership development classes & personalized 1:1 mentorship nationwide.",
@@ -213,7 +227,7 @@ const leadershipExperiences = [
         tags: []
     },
     {
-        title: "NYC Youth Action Board",
+        title: "Youth Action Board",
         organization: "AAARI",
         date: "Aug '24 — Present",
         description: "Identified key areas for improvement in representation and inclusivity for NYCDOE.",
@@ -256,7 +270,7 @@ const projectExperiences = [
         link: "https://stylete.app/",
         organization: "HackHarvard, Harvard University",
         date: "Oct '24",
-        description: "- Created a fully working demo app within 36 hours w my mentor, Andrew Zeng.<br>",
+        description: "- Platform for businesses to sell excess fabric waste to creatives.<br>",
         tags: ["HTML", "CSS", "PHP"]
     },
     {
