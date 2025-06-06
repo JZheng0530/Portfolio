@@ -1,0 +1,74 @@
+/**
+ * Cursor and Trail Effect Styles
+ */
+
+/* Custom cursor */
+.custom-cursor {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    mix-blend-mode: difference;
+}
+
+/* Cursor trail */
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+/* Cursor hover effect for interactive elements */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+.toggle-btn:hover ~ .custom-cursor {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Design agency zoom effect - increase base font size */
+html {
+    font-size: 18px; /* Increased from default 16px */
+    zoom: 1.05; /* Slight zoom for entire page */
+}
+
+/* Adjust container width for better focus */
+.centered-container {
+    max-width: min(85vw, 750px); /* Slightly narrower than original */
+}
+
+/* Enhance headings for design agency look */
+.above-paragraph {
+    font-size: 3rem; /* Larger heading */
+    letter-spacing: -0.5px;
+}
+
+/* Enhance paragraph text */
+.centered-container > p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+}
+
+/* Enhance section titles */
+.resume-subtitle {
+    font-size: 2.2rem;
+    letter-spacing: -0.3px;
+}
+
+/* Add subtle text shadow to headings for depth */
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
