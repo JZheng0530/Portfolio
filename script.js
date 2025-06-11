@@ -87,7 +87,7 @@ const skills = [
     }
 ];
 
-// Render skills (simplified without animations)
+// Render skills in a centered grid
 document.addEventListener('DOMContentLoaded', () => {
     const skillsSection = document.querySelector('.skills-section');
     if (skillsSection) {

@@ -32,10 +32,18 @@
 /* Cursor hover effect for interactive elements */
 a:hover ~ .custom-cursor,
 button:hover ~ .custom-cursor,
-.toggle-btn:hover ~ .custom-cursor {
-    width: 24px;
-    height: 24px;
-    background-color: rgba(255, 255, 255, 0.9);
+.toggle-btn:hover ~ .custom-cursor,
+.nav-links a:hover ~ .custom-cursor {
+    opacity: 0;
+    visibility: hidden;
+}
+
+a:hover ~ .cursor-trail,
+button:hover ~ .cursor-trail,
+.toggle-btn:hover ~ .cursor-trail,
+.nav-links a:hover ~ .cursor-trail {
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Design agency zoom effect - increase base font size */

@@ -79,6 +79,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide default cursor when over the document
     document.body.style.cursor = 'none';
     
+    // Hide cursor on clickable elements
+    const clickableElements = document.querySelectorAll('a, button, .toggle-btn, .nav-links a');
+    
+    clickableElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '0';
+            cursor.style.visibility = 'hidden';
+            trails.forEach(trail => {
+                trail.element.style.opacity = '0';
+                trail.element.style.visibility = 'hidden';
+            });
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '1';
+            cursor.style.visibility = 'visible';
+            trails.forEach((trail, index) => {
+                trail.element.style.opacity = 1 - (index / trailCount);
+                trail.element.style.visibility = 'visible';
+            });
+        });
+    });
+    
     // Show default cursor when leaving the window
     document.addEventListener('mouseleave', () => {
         cursor.style.display = 'none';
@@ -96,4 +119,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         document.body.style.cursor = 'none';
     });
+    
+    // Update clickable elements when DOM changes (for dynamically added elements)
+    const observer = new MutationObserver(() => {
+        const newClickableElements = document.querySelectorAll('a, button, .toggle-btn, .nav-links a');
+        
+        newClickableElements.forEach(element => {
+            if (!element.hasMouseEnterListener) {
+                element.hasMouseEnterListener = true;
+                
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.opacity = '0';
+                    cursor.style.visibility = 'hidden';
+                    trails.forEach(trail => {
+                        trail.element.style.opacity = '0';
+                        trail.element.style.visibility = 'hidden';
+                    });
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.opacity = '1';
+                    cursor.style.visibility = 'visible';
+                    trails.forEach((trail, index) => {
+                        trail.element.style.opacity = 1 - (index / trailCount);
+                        trail.element.style.visibility = 'visible';
+                    });
+                });
+            }
+        });
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
 });

@@ -211,10 +211,12 @@ nav:hover {
 
 .nav-hover-area:hover ~ .nav-indicator,
 nav:hover ~ .nav-indicator,
-.nav-hover-area:hover + nav ~ .nav-indicator {
-    opacity: 0;
+.nav-hover-area:hover + nav ~ .nav-indicator,
+.nav-hover-area:hover ~ nav ~ .nav-indicator {
+    opacity: 0 !important;
     transform: translateX(-50%) translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    visibility: hidden;
 }
 
 .nav-links {
@@ -346,23 +348,18 @@ nav:hover ~ .nav-indicator,
     position: relative;
     overflow: hidden;
     height: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .skills-grid {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    width: max-content;
+    justify-content: center;
+    max-width: 90%;
     padding: 20px;
-    animation: carousel 30s linear infinite;
-}
-
-@keyframes carousel {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    margin: 0 auto;
 }
 
 .skill-card {
@@ -376,12 +373,19 @@ nav:hover ~ .nav-indicator,
     text-align: center;
     gap: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     opacity: 1;
     visibility: visible;
     width: 200px;
     height: 180px;
     box-sizing: border-box;
+    margin: 5px;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .skill-icon {
