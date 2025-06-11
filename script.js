@@ -202,32 +202,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Contact button functionality
+// Contact icons functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const contactButton = document.getElementById('contact-button');
-    const contactPopup = document.getElementById('contact-popup');
-    const emailOption = document.getElementById('email-option');
-    const scheduleOption = document.getElementById('schedule-option');
+    const emailIcon = document.getElementById('email-icon');
+    const cameraIcon = document.getElementById('camera-icon');
     const toastNotification = document.getElementById('toast-notification');
     
-    // Toggle popup when contact button is clicked
-    contactButton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        contactPopup.classList.toggle('show');
-    });
-    
-    // Close popup when clicking outside
-    document.addEventListener('click', function(e) {
-        if (contactPopup.classList.contains('show') && 
-            !contactPopup.contains(e.target) && 
-            e.target !== contactButton) {
-            contactPopup.classList.remove('show');
-        }
-    });
-    
-    // Copy email to clipboard when email option is clicked
-    emailOption.addEventListener('click', function() {
-        const email = "Contact@jzheng.dev";
+    // Copy email to clipboard when email icon is clicked
+    emailIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        const email = "contact@jzheng.dev";
         navigator.clipboard.writeText(email).then(function() {
             // Show toast notification
             toastNotification.classList.add('show');
@@ -236,22 +220,17 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 toastNotification.classList.remove('show');
             }, 3000);
-            
-            // Close popup
-            contactPopup.classList.remove('show');
         }).catch(function(err) {
             console.error('Could not copy email: ', err);
         });
     });
     
-    // Initialize Calendly when schedule option is clicked
-    scheduleOption.addEventListener('click', function() {
-        // Close popup
-        contactPopup.classList.remove('show');
-        
-        // Initialize Calendly widget
+    // Open Calendly when camera icon is clicked
+    cameraIcon.addEventListener('click', function(e) {
+        e.preventDefault();
         Calendly.initPopupWidget({
             url: 'https://calendly.com/uberfoots/20?hide_gdpr_banner=1'
         });
     });
+
 });
