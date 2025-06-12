@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Contact icons functionality
 document.addEventListener('DOMContentLoaded', function() {
     const emailIcon = document.getElementById('email-icon');
-    const cameraIcon = document.getElementById('camera-icon');
+    const calendarIcon = document.getElementById('calendar-icon');
     const toastNotification = document.getElementById('toast-notification');
     
     // Copy email to clipboard when email icon is clicked
@@ -225,8 +225,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Open Calendly when camera icon is clicked
-    cameraIcon.addEventListener('click', function(e) {
+    // Open Calendly when calendar icon is clicked
+    calendarIcon.addEventListener('click', function(e) {
         e.preventDefault();
         Calendly.initPopupWidget({
             url: 'https://calendly.com/uberfoots/20?hide_gdpr_banner=1'
