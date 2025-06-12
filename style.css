@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .above-paragraph {
     margin-top: 40px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
@@ -948,29 +948,7 @@ body.light-mode .skill-content p {
     font-size: 1.1rem;
 }
 
-/* Toast notification */
-.toast-notification {
-    position: fixed;
-    top: 70px; /* Position it under the navigation bar */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 50px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.toast-notification.show {
-    opacity: 1;
-    visibility: visible;
-}
+/* Toast notification styles moved to src/styles/toast.css */
 
 /* Update contact button to be a button instead of a link */
 .contact-button {

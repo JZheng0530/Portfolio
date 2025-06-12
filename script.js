@@ -202,26 +202,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Contact icons functionality
+// Contact icons functionality with Dynamic Island effect
 document.addEventListener('DOMContentLoaded', function() {
     const emailIcon = document.getElementById('email-icon');
     const calendarIcon = document.getElementById('calendar-icon');
     const toastNotification = document.getElementById('toast-notification');
+    
+    // Add icon to toast notification
+    const toastContent = toastNotification.innerHTML;
+    toastNotification.innerHTML = `
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        ${toastContent}
+    `;
+    
+    // Function to show toast with Dynamic Island effect
+    function showDynamicIslandToast(message) {
+        // Update message if provided
+        if (message) {
+            toastNotification.querySelector('span').textContent = message;
+        }
+        
+        // Show toast with animation
+        toastNotification.classList.add('show');
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+            toastNotification.classList.remove('show');
+        }, 3000);
+    }
     
     // Copy email to clipboard when email icon is clicked
     emailIcon.addEventListener('click', function(e) {
         e.preventDefault();
         const email = "contact@jzheng.dev";
         navigator.clipboard.writeText(email).then(function() {
-            // Show toast notification
-            toastNotification.classList.add('show');
-            
-            // Hide toast after 3 seconds
-            setTimeout(function() {
-                toastNotification.classList.remove('show');
-            }, 3000);
+            // Show toast notification with Dynamic Island effect
+            showDynamicIslandToast("Email copied to clipboard!");
         }).catch(function(err) {
             console.error('Could not copy email: ', err);
+            showDynamicIslandToast("Failed to copy email");
         });
     });
     
@@ -231,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
         Calendly.initPopupWidget({
             url: 'https://calendly.com/uberfoots/20?hide_gdpr_banner=1'
         });
+        showDynamicIslandToast("Opening calendar...");
     });
 
 });
