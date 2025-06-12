@@ -1,79 +1,50 @@
-/**
- * Timeline Implementation
- * This file demonstrates how to integrate the Timeline component
- * into the existing portfolio website.
- */
-
 import Timeline from './components/Timeline.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the timeline component
     const timeline = new Timeline();
     
-    // Wait for the loader to finish
     const loader = document.querySelector('.loader-container');
     if (loader) {
         document.body.style.overflow = 'hidden';
         
-        // Remove loader after delay
         setTimeout(() => {
             loader.style.opacity = '0';
             document.body.style.overflow = '';
             setTimeout(() => {
                 loader.remove();
                 
-                // Initialize timelines directly
                 initializeTimelines(timeline);
                 
-                // Initialize other animations
                 initializeAnimations();
             }, 500);
         }, 2000);
     } else {
-        // If no loader, initialize immediately
         initializeTimelines(timeline);
         initializeAnimations();
     }
     
-    // Set up section toggle functionality
     setupSectionToggles();
 });
 
-/**
- * Initialize timelines for all sections by directly creating them from data
- * @param {Timeline} timeline - Timeline instance
- */
 function initializeTimelines(timeline) {
-    // Create timelines directly from experience data
     createTimelineForSection(timeline, '.section.professional .resume-section', professionalExperiences);
     createTimelineForSection(timeline, '.section.leadership .resume-section', leadershipExperiences);
     createTimelineForSection(timeline, '.section.projects .resume-section', projectExperiences);
 }
 
-/**
- * Create a timeline for a section using provided data
- * @param {Timeline} timeline - Timeline instance
- * @param {string} selectorPath - Selector for the section
- * @param {Array} experiences - Array of experience data
- */
 function createTimelineForSection(timeline, selectorPath, experiences) {
     const section = document.querySelector(selectorPath);
     if (section) {
         const container = section.querySelector('.resume-cards');
         if (container) {
-            // Create the timeline directly
             timeline.createTimeline(experiences, container);
             
-            // Make the timeline visible
             container.style.opacity = '1';
             container.style.transition = 'opacity 0.5s ease-in-out';
         }
     }
 }
 
-/**
- * Initialize fade-in animations for elements
- */
 function initializeAnimations() {
     const elements = [
         '.above-paragraph',
@@ -92,9 +63,6 @@ function initializeAnimations() {
     });
 }
 
-/**
- * Set up section toggle functionality
- */
 function setupSectionToggles() {
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const slider = document.querySelector('.slider');

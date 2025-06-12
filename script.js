@@ -1,4 +1,3 @@
-// Simple SkillCard class implementation
 class SkillCard {
     constructor(icon, title, description) {
         this.icon = icon;
@@ -20,9 +19,7 @@ class SkillCard {
     }
 }
 
-// Skills data
 const skills = [
-    // Programming Languages
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
         title: 'C++',
@@ -43,7 +40,6 @@ const skills = [
         title: 'Python',
         description: 'Programming Language'
     },
-    // Web Technologies
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
         title: 'HTML',
@@ -64,7 +60,6 @@ const skills = [
         title: 'NextJS',
         description: 'React Framework'
     },
-    // Development Tools
     {
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
         title: 'Git',
@@ -87,18 +82,14 @@ const skills = [
     }
 ];
 
-// Render skills in a centered grid
 document.addEventListener('DOMContentLoaded', () => {
     const skillsSection = document.querySelector('.skills-section');
     if (skillsSection) {
-        // Clear existing content
         skillsSection.innerHTML = '';
         
-        // Create skills grid
         const skillsGrid = document.createElement('div');
         skillsGrid.className = 'skills-grid';
         
-        // Create skill cards
         skills.forEach((skill) => {
             const skillCard = new SkillCard(skill.icon, skill.title, skill.description).render();
             skillsGrid.appendChild(skillCard);
@@ -107,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         skillsSection.appendChild(skillsGrid);
     }
 
-    // Initialize animations
     function initializeAnimations() {
         const elements = [
             '.above-paragraph',
@@ -128,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle functionality
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const slider = document.querySelector('.slider');
     const sections = document.querySelectorAll('.section');
@@ -139,14 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetSection = document.querySelector(`.section.${sectionName}`);
             const currentSection = document.querySelector('.section.active');
 
-            // Don't do anything if clicking the active section
             if (currentSection === targetSection) return;
 
-            // Update buttons
             toggleBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Update slider position
             slider.className = 'slider';
             if (sectionName === 'leadership') {
                 slider.classList.add('leadership');
@@ -154,28 +140,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 slider.classList.add('projects');
             }
 
-            // Fade out current section
             if (currentSection) {
                 currentSection.style.opacity = '0';
                 currentSection.style.transform = 'translateY(20px)';
             }
 
-            // After fade out, switch sections
             setTimeout(() => {
                 sections.forEach(s => s.classList.remove('active'));
                 targetSection.classList.add('active');
                 
-                // Force a reflow to ensure the animation triggers
                 void targetSection.offsetWidth;
                 
-                // Fade in new section
                 targetSection.style.opacity = '1';
                 targetSection.style.transform = 'translateY(0)';
             }, 300);
         });
     });
 
-    // Add hover effect for nav links
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('mouseenter', (e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -185,12 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Use the existing loader in HTML instead of creating a new one
     const loader = document.querySelector('.loader-container');
     if (loader) {
         document.body.style.overflow = 'hidden';
         
-        // Remove loader after delay
         setTimeout(() => {
             loader.style.opacity = '0';
             document.body.style.overflow = '';
@@ -202,13 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Contact icons functionality with Dynamic Island effect
 document.addEventListener('DOMContentLoaded', function() {
     const emailIcon = document.getElementById('email-icon');
     const calendarIcon = document.getElementById('calendar-icon');
     const toastNotification = document.getElementById('toast-notification');
     
-    // Add icon to toast notification
     const toastContent = toastNotification.innerHTML;
     toastNotification.innerHTML = `
         <div class="toast-icon">
@@ -217,28 +194,22 @@ document.addEventListener('DOMContentLoaded', function() {
         ${toastContent}
     `;
     
-    // Function to show toast with Dynamic Island effect
     function showDynamicIslandToast(message) {
-        // Update message if provided
         if (message) {
             toastNotification.querySelector('span').textContent = message;
         }
         
-        // Show toast with animation
         toastNotification.classList.add('show');
         
-        // Hide after 3 seconds
         setTimeout(() => {
             toastNotification.classList.remove('show');
         }, 3000);
     }
     
-    // Copy email to clipboard when email icon is clicked
     emailIcon.addEventListener('click', function(e) {
         e.preventDefault();
         const email = "contact@jzheng.dev";
         navigator.clipboard.writeText(email).then(function() {
-            // Show toast notification with Dynamic Island effect
             showDynamicIslandToast("Email copied to clipboard!");
         }).catch(function(err) {
             console.error('Could not copy email: ', err);
@@ -246,7 +217,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Open Calendly when calendar icon is clicked
     calendarIcon.addEventListener('click', function(e) {
         e.preventDefault();
         Calendly.initPopupWidget({

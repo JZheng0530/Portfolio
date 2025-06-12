@@ -1,210 +1,230 @@
-/* Timeline Styles */
-
-/* Timeline Container */
+/* Main container for the timeline component */
 .timeline-container {
-  position: relative;
+  position: relative; /* For absolute positioning of children */
   width: 100%;
-  max-width: min(90vw, 725px);
-  margin: 0 auto;
-  padding: 40px 0;
-  font-family: 'Raleway', sans-serif; /* Changed font to Raleway */
+  max-width: min(90vw, 725px); /* Responsive width with maximum */
+  margin: 0 auto; /* Center the timeline */
+  padding: 40px 0; /* Vertical spacing */
+  font-family: 'Raleway', sans-serif; /* Custom font for timeline */
 }
 
-/* Vertical Line */
+/* Vertical line in the center of the timeline */
 .timeline-line {
-  position: absolute;
+  position: absolute; /* Position relative to container */
   top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px; /* Reduced from 4px */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3)); /* Changed from blue to subtle white */
-  transform: translateX(-50%);
-  z-index: 1;
+  bottom: 0; /* Stretch from top to bottom */
+  left: 50%; /* Center in the timeline */
+  width: 2px; /* Thin line */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3)); /* Gradient effect */
+  transform: translateX(-50%); /* Center the line precisely */
+  z-index: 1; /* Ensure proper stacking */
 }
 
-/* Timeline Items */
+/* Individual timeline entry */
 .timeline-item {
   position: relative;
-  width: 45%;
-  margin-bottom: 50px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  width: 45%; /* Less than 50% to leave space for the center line */
+  margin-bottom: 50px; /* Space between items */
+  opacity: 0; /* Start hidden for animation */
+  transform: translateY(20px); /* Initial position for animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smooth entrance animation */
 }
 
+/* Visible state for timeline items (added via JavaScript) */
 .timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Final position */
 }
 
+/* Timeline items positioned on the left side */
 .timeline-item.left {
   margin-left: 0;
-  margin-right: auto;
+  margin-right: auto; /* Push to the left side */
 }
 
+/* Timeline items positioned on the right side */
 .timeline-item.right {
-  margin-left: auto;
+  margin-left: auto; /* Push to the right side */
   margin-right: 0;
 }
 
-/* Timeline Dots - Hidden */
+/* Dots on the timeline (currently hidden) */
 .timeline-dot {
-  display: none; /* Hide the blue dots */
+  display: none; /* No arrows in current design */ /* Hidden in current design */
 }
 
-/* Timeline Content */
+/* Content container for each timeline item */
 .timeline-content {
   padding: 0;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-  position: relative;
+  border-radius: 12px; /* Rounded corners */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+  position: relative; /* For positioning child elements */
 }
 
-/* Remove arrows pointing to timeline */
+/* Hide pseudo-elements that might have been used for arrows */
 .timeline-item.left .timeline-content:after,
 .timeline-item.right .timeline-content:after {
   display: none;
 }
 
-/* Timeline Content Styling */
+/* Header section of each timeline item */
 .timeline-header {
   padding: 10px 0;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom-color 0.3s ease;
+  border-bottom: 1px solid transparent; /* Invisible border that shows on hover */
+  transition: border-bottom-color 0.3s ease; /* Smooth border transition */
 }
 
+/* Title of each timeline item */
 .timeline-header h3 {
   font-size: 1.3rem;
   margin: 0 0 10px 0;
   color: #fff;
   font-weight: 500; /* Lighter weight for Raleway */
-  letter-spacing: 0.5px; /* Added letter spacing */
+  letter-spacing: 0.5px; /* Added letter spacing for better readability */
 }
 
+/* Links within timeline titles */
 .timeline-header h3 a {
   color: white;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease; /* Smooth color change on hover */
 }
 
+/* Hover state for title links */
 .timeline-header h3 a:hover {
-  color: #f39c12;
+  color: #f39c12; /* Orange highlight color on hover */
 }
 
+/* Organization and date text */
 .timeline-header p {
-  color: #b3b3b3;
+  color: #b3b3b3; /* Light gray for secondary information */
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Smaller than the title */
   font-weight: 300; /* Lighter weight for dates */
 }
 
+/* Description text for each timeline item */
 .timeline-body {
-  color: #d1d1d1;
+  color: #d1d1d1; /* Light gray for body text */
   font-size: 0.95rem;
-  line-height: 1.5;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease;
+  line-height: 1.5; /* Good spacing for readability */
+  max-height: 0; /* Initially collapsed */
+  overflow: hidden; /* Hide overflow content */
+  opacity: 0; /* Initially invisible */
+  transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease; /* Smooth expansion */
 }
 
-/* Hover effect to expand description */
+/* Hover effect to expand description - reveals the content on hover */
 .timeline-content:hover .timeline-body {
-  max-height: 500px;
-  opacity: 1;
-  margin-top: 15px;
+  max-height: 500px; /* Allow content to expand */
+  opacity: 1; /* Make fully visible */
+  margin-top: 15px; /* Add space above content */
 }
 
+/* Add border when hovering over timeline content */
 .timeline-content:hover .timeline-header {
-  border-bottom-color: rgba(255, 255, 255, 0.2); /* Changed from blue to subtle white */
+  border-bottom-color: rgba(255, 255, 255, 0.2); /* Subtle white border appears on hover */
 }
 
-/* Preserve existing card tags styling */
+/* Tags container for skills or categories */
 .timeline-content .card-tags {
   margin-top: 15px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: wrap; /* Allow tags to wrap to next line */
+  gap: 10px; /* Space between tags */
   justify-content: flex-start;
-  opacity: 0;
-  max-height: 0;
+  opacity: 0; /* Initially hidden */
+  max-height: 0; /* Initially collapsed */
   overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* Smooth reveal */
 }
 
+/* Show tags on hover */
 .timeline-content:hover .card-tags {
-  opacity: 1;
-  max-height: 100px;
+  opacity: 1; /* Fully visible */
+  max-height: 100px; /* Allow space for tags */
 }
 
+/* Individual tag styling */
 .timeline-content .card-tags span {
-  background-color: rgba(255, 255, 255, 0.1); /* Changed from blue to subtle white background */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle white background */
   color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.75rem;
+  padding: 5px 10px; /* Comfortable padding */
+  border-radius: 20px; /* Pill shape */
+  font-size: 0.75rem; /* Small text */
   font-weight: 300; /* Lighter weight for tags */
 }
 
-/* Year Markers - Hidden */
+/* Year Markers - Currently hidden in the design */
 .timeline-year-marker {
-  display: none; /* Hide the year markers */
+  display: none; /* Year markers are not shown in current design */
 }
 
-/* Light Mode Styles */
+/* Light Mode Styles - Adjustments for light theme */
 body.light-mode .timeline-line {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)); /* Changed gradient for light mode */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)); /* Darker gradient for light mode */
 }
 
+/* Light mode title color */
 body.light-mode .timeline-header h3 {
-  color: #333;
+  color: #333; /* Dark text for links in light mode */ /* Dark gray for light mode */
 }
 
+/* Light mode link color */
 body.light-mode .timeline-header h3 a {
   color: #333;
 }
 
+/* Light mode secondary text color */
 body.light-mode .timeline-header p {
-  color: #666;
+  color: #666; /* Medium gray for secondary text */
 }
 
+/* Light mode body text color */
 body.light-mode .timeline-body {
-  color: #444;
+  color: #444; /* Darker gray for body text */
 }
 
+/* Light mode hover border */
 body.light-mode .timeline-content:hover .timeline-header {
-  border-bottom-color: rgba(0, 0, 0, 0.1); /* Changed for light mode */
+  border-bottom-color: rgba(0, 0, 0, 0.1); /* Subtle dark border for light mode */
 }
 
+/* Light mode tag styling */
 body.light-mode .timeline-content .card-tags span {
-  background-color: rgba(0, 0, 0, 0.05); /* Changed for light mode */
-  color: #333;
+  background-color: rgba(0, 0, 0, 0.05); /* Subtle dark background for light mode */
+  color: #333; /* Dark text for tags */
 }
 
-/* Responsive Design */
+/* Responsive Design - Tablet and smaller devices */
 @media (max-width: 768px) {
+  /* Move timeline to left side on smaller screens */
   .timeline-line {
-    left: 30px;
+    left: 30px; /* Position line at left instead of center */
   }
   
+  /* Make items take full width and align to the left */
   .timeline-item {
-    width: calc(100% - 60px);
-    margin-left: 60px !important;
-    margin-right: 0 !important;
+    width: calc(100% - 60px); /* Full width minus space for line */
+    margin-left: 60px !important; /* Force left margin */
+    margin-right: 0 !important; /* Remove right margin */
   }
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness - Phone-sized devices */
 @media (max-width: 480px) {
+  /* Further adjustments for very small screens */
   .timeline-item {
-    width: calc(100% - 50px);
-    margin-left: 50px !important;
+    width: calc(100% - 50px); /* Slightly more compact */
+    margin-left: 50px !important; /* Smaller margin */
   }
   
+  /* Move timeline line even more to the left */
   .timeline-line {
     left: 20px;
   }
   
+  /* Remove padding for more space */
   .timeline-content {
     padding: 0;
   }

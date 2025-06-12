@@ -1,43 +1,44 @@
-/**
- * Cursor and Trail Effect Styles
- */
-
-/* Custom cursor */
+/* Main custom cursor element that replaces the default browser cursor */
 .custom-cursor {
+    /* Fixed positioning to follow mouse movement */
     position: fixed;
     width: 16px;
     height: 16px;
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-    mix-blend-mode: difference;
+    border-radius: 50%; /* Circular cursor */
+    pointer-events: none; /* Allows clicking through the cursor */
+    z-index: 9999; /* Ensure cursor is above all other elements */
+    transform: translate(-50%, -50%); /* Center the cursor on the mouse position */
+    transition: width 0.2s, height 0.2s, background-color 0.2s; /* Smooth transitions for hover effects */
+    mix-blend-mode: difference; /* Creates contrast against different backgrounds */
 }
 
-/* Cursor trail */
+/* Trail elements that follow the main cursor with a delay */
 .cursor-trail {
+    /* Fixed positioning similar to main cursor */
     position: fixed;
     width: 8px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.4);
+    height: 8px; /* Smaller than the main cursor */
+    background-color: rgba(255, 255, 255, 0.4); /* More transparent than main cursor */
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 9998; /* Just below the main cursor */
     transform: translate(-50%, -50%);
     mix-blend-mode: difference;
 }
 
-/* Cursor hover effect for interactive elements */
+/* Hide the custom cursor when hovering over interactive elements */
 a:hover ~ .custom-cursor,
 button:hover ~ .custom-cursor,
 .toggle-btn:hover ~ .custom-cursor,
 .nav-links a:hover ~ .custom-cursor {
+    /* Make cursor invisible to show the browser's default cursor */
+    /* Make trail invisible along with the main cursor */
     opacity: 0;
     visibility: hidden;
 }
 
+/* Hide the cursor trail when hovering over interactive elements */
 a:hover ~ .cursor-trail,
 button:hover ~ .cursor-trail,
 .toggle-btn:hover ~ .cursor-trail,
@@ -46,37 +47,37 @@ button:hover ~ .cursor-trail,
     visibility: hidden;
 }
 
-/* Design agency zoom effect - increase base font size */
+/* Base font size and slight zoom for better readability */
 html {
-    font-size: 18px; /* Increased from default 16px */
-    zoom: 1.05; /* Slight zoom for entire page */
+    font-size: 18px;
+    zoom: 1.05;
 }
 
-/* Adjust container width for better focus */
+/* Main content container with responsive width */
 .centered-container {
-    max-width: min(85vw, 750px); /* Slightly narrower than original */
+    max-width: min(85vw, 750px); /* Responsive width that's never wider than 750px */
 }
 
-/* Enhance headings for design agency look */
+/* Large heading above paragraphs */
 .above-paragraph {
-    font-size: 3rem; /* Larger heading */
-    letter-spacing: -0.5px;
+    font-size: 3rem;
+    letter-spacing: -0.5px; /* Tighter letter spacing for headings */
 }
 
-/* Enhance paragraph text */
+/* Enhance paragraph text - improved readability for main content */
 .centered-container > p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    letter-spacing: 0.2px;
+    font-size: 1.2rem; /* Slightly larger than default */
+    line-height: 1.7; /* Generous line height for readability */
+    letter-spacing: 0.2px; /* Subtle letter spacing */
 }
 
-/* Enhance section titles */
+/* Enhance section titles - make them stand out */
 .resume-subtitle {
-    font-size: 2.2rem;
-    letter-spacing: -0.3px;
+    font-size: 2.2rem; /* Large size for section headings */
+    letter-spacing: -0.3px; /* Tighter letter spacing */
 }
 
-/* Add subtle text shadow to headings for depth */
+/* Add subtle text shadow to all headings for visual depth */
 h1, h2, h3, h4, h5, h6 {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }

@@ -9,17 +9,14 @@ let lastTime;
 const skillsGrid = document.querySelector('.skills-grid');
 
 if (skillsGrid) {
-    // Mouse events
     skillsGrid.addEventListener('mousedown', startDragging);
     window.addEventListener('mousemove', drag);
     window.addEventListener('mouseup', stopDragging);
 
-    // Touch events
     skillsGrid.addEventListener('touchstart', startDragging);
     window.addEventListener('touchmove', drag);
     window.addEventListener('touchend', stopDragging);
 
-    // Prevent context menu on right click
     skillsGrid.addEventListener('contextmenu', (e) => e.preventDefault());
 }
 
@@ -30,7 +27,6 @@ function startDragging(e) {
     lastX = startX;
     lastTime = Date.now();
 
-    // Stop the default animation
     skillsGrid.classList.add('no-animation');
     skillsGrid.classList.add('dragging');
 }
@@ -40,9 +36,8 @@ function drag(e) {
 
     e.preventDefault();
     const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
-    const walk = (x - startX) * 2; // Multiply by 2 for faster scrolling
+    const walk = (x - startX) * 2;
 
-    // Calculate velocity
     const currentTime = Date.now();
     const timeElapsed = currentTime - lastTime;
     velocity = (x - lastX) / timeElapsed;
@@ -59,11 +54,10 @@ function stopDragging() {
 
     skillsGrid.classList.remove('dragging');
 
-    // Apply momentum scrolling
     const momentumScroll = () => {
         if (Math.abs(velocity) > 0.1) {
-            skillsGrid.scrollLeft -= velocity * 16; // 16ms is roughly one frame at 60fps
-            velocity *= 0.95; // Decay factor
+            skillsGrid.scrollLeft -= velocity * 16;
+            velocity *= 0.95;
             animationFrameId = requestAnimationFrame(momentumScroll);
         } else {
             skillsGrid.classList.remove('no-animation');

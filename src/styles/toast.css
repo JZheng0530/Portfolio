@@ -1,23 +1,28 @@
-/* Dynamic Island Toast Notification Styles */
+/* Main toast notification container - used for displaying temporary messages */
 .toast-notification {
+    /* Position in the center top of the viewport */
     position: fixed;
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
+    /* Styling for the toast */
     background-color: transparent;
     color: white;
     padding: 10px 18px;
     border-radius: 24px;
-    z-index: 1000;
+    z-index: 1000; /* Ensure toast appears above other elements */
+    /* Initial state - hidden */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth transition */
+    /* Typography and visual effects */
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(15px); /* For Safari support */
     border: 1.5px solid rgba(255, 255, 255, 0.3);
+    /* Layout and dimensions */
     width: 180px;
     max-width: 80%;
     height: auto;
@@ -27,57 +32,71 @@
     overflow: hidden;
 }
 
-/* Dynamic Island animation states */
+/* Active state when toast is visible */
 .toast-notification.show {
+    /* Make toast visible with animation */
     opacity: 1;
     visibility: visible;
-    animation: toastPulse 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: toastPulse 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Subtle pulse animation */
     height: auto;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Content styling */
+/* Toast text content styling */
 .toast-notification span {
+    /* Layout and initial state */
     display: flex;
     align-items: center;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transform: translateY(5px);
-    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+    opacity: 0; /* Start hidden */
+    transform: translateY(5px); /* Slight offset for animation */
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s; /* Delayed transition */
+    
+    /* Typography */
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     font-weight: 500;
     letter-spacing: 0.2px;
     font-size: 0.9em;
 }
 
+/* Text content when toast is visible */
 .toast-notification.show span {
+    /* Fade in and move to final position */
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Light mode adjustments for toast text */
 body.light-mode .toast-notification span {
+    /* Lighter text shadow for better readability in light mode */
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Icon styling */
+/* Icon within the toast notification */
 .toast-notification .toast-icon {
+    /* Positioning and layout */
     margin-right: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    /* Styling */
     font-size: 0.95em;
     color: rgba(255, 255, 255, 0.95);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Glow effect */
 }
 
+/* Light mode adjustments for toast icon */
 body.light-mode .toast-notification .toast-icon {
+    /* Darker color and adjusted glow for light mode */
     color: rgba(0, 0, 0, 0.8);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
-/* Light mode adjustments */
+/* Light mode styling for the toast container */
 body.light-mode .toast-notification {
+    /* Lighter colors and subtle shadows for light mode */
     background-color: transparent;
     color: #333;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -86,20 +105,23 @@ body.light-mode .toast-notification {
     -webkit-backdrop-filter: blur(15px);
 }
 
-/* Animations */
+/* Animation for the toast appearance */
 @keyframes toastPulse {
+    /* Start slightly smaller and less opaque */
     0% {
         transform: translateX(-50%) scale(0.95);
         opacity: 0.7;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         border-width: 1px;
     }
+    /* Peak of animation with maximum scale and glow */
     50% {
         transform: translateX(-50%) scale(1);
         opacity: 1;
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25), 0 0 25px rgba(255, 255, 255, 0.3);
         border-width: 1.5px;
     }
+    /* Settle to final state */
     100% {
         transform: translateX(-50%) scale(1);
         opacity: 1;
@@ -108,20 +130,23 @@ body.light-mode .toast-notification {
     }
 }
 
-/* Glow effect for dark mode */
+/* Enhanced shadow effect for dark mode when toast is visible */
 body:not(.light-mode) .toast-notification.show {
+    /* Stronger glow effect in dark mode */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Glow effect for light mode */
+/* Enhanced shadow effect for light mode when toast is visible */
 body.light-mode .toast-notification.show {
+    /* Subtle shadow and border in light mode */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.7);
     border-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Ensure toast doesn't block content */
+/* Responsive adjustments for mobile devices */
 @media (max-width: 768px) {
+    /* Position closer to top and limit width on small screens */
     .toast-notification {
         top: 20px;
         max-width: 80%;

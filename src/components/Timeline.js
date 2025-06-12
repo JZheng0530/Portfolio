@@ -1,19 +1,10 @@
-/**
- * Timeline Component
- * Handles the creation and animation of timeline elements
- */
-
 class Timeline {
     constructor() {
         this.timelineItems = [];
         this.observer = null;
     }
 
-    /**
-     * Initialize the timeline by setting up the intersection observer
-     */
     init() {
-        // Set up intersection observer for scroll animations
         this.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -23,23 +14,15 @@ class Timeline {
             });
         }, { threshold: 0.2 });
 
-        // Find all timeline items and observe them
         this.timelineItems = document.querySelectorAll('.timeline-item');
         this.timelineItems.forEach(item => {
             this.observer.observe(item);
         });
     }
 
-    /**
-     * Create a timeline from experience data
-     * @param {Array} experiences - Array of experience objects
-     * @param {HTMLElement} container - Container element to append timeline to
-     */
     createTimeline(experiences, container) {
-        // Clear the container
         container.innerHTML = '';
 
-        // Create the timeline container and line
         const timelineContainer = document.createElement('div');
         timelineContainer.className = 'timeline-container';
 
@@ -47,16 +30,12 @@ class Timeline {
         timelineLine.className = 'timeline-line';
         timelineContainer.appendChild(timelineLine);
 
-        // Track years for year markers
         let currentYear = null;
 
-        // Create timeline items
         experiences.forEach((exp, index) => {
-            // Extract year from date string (assuming format like "May '25 — Present")
             const dateMatch = exp.date.match(/'(\d{2})/);
             const year = dateMatch ? `20${dateMatch[1]}` : null;
 
-            // Add year marker if this is a new year
             if (year && year !== currentYear) {
                 const yearMarker = document.createElement('div');
                 yearMarker.className = 'timeline-year-marker';
@@ -65,24 +44,19 @@ class Timeline {
                 currentYear = year;
             }
 
-            // Create timeline item
             const timelineItem = document.createElement('div');
             timelineItem.className = `timeline-item ${index % 2 === 0 ? 'left' : 'right'}`;
 
-            // Create timeline dot
             const timelineDot = document.createElement('div');
             timelineDot.className = 'timeline-dot';
             timelineItem.appendChild(timelineDot);
 
-            // Create timeline content
             const timelineContent = document.createElement('div');
             timelineContent.className = 'timeline-content';
 
-            // Create header
             const timelineHeader = document.createElement('div');
             timelineHeader.className = 'timeline-header';
 
-            // Handle title with optional link
             const titleElement = document.createElement('h3');
             if (exp.link) {
                 titleElement.innerHTML = `<a href="${exp.link}" target="_blank">${exp.title}</a>`;
@@ -91,7 +65,6 @@ class Timeline {
             }
             timelineHeader.appendChild(titleElement);
 
-            // Add organization and date
             const dateElement = document.createElement('p');
             dateElement.textContent = exp.organization ? `${exp.organization} | ${exp.date}` : exp.date;
             timelineHeader.appendChild(dateElement);
